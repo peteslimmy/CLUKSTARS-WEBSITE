@@ -31,6 +31,6 @@ export const config = {
     bucket: process.env.MINIO_BUCKET || 'clukstars-media',
     useSSL: process.env.MINIO_USE_SSL === 'true',
   },
-  corsOrigin: process.env.CORS_ORIGIN || 'http://localhost:5173',
+  corsOrigin: process.env.CORS_ORIGIN || 'http://localhost:5173,https://clukstars.netlify.app',
   appName: process.env.APP_NAME || 'CLUKSTARS CMS',
 };
