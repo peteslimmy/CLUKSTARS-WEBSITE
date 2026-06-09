@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms & Conditions | CLUKSTARS LIMITED</title>
+  <meta name="description" content="Terms and conditions governing the use of CLUKSTARS Limited sovereign infrastructure services, software, and digital platforms. Compliance with NDPA 2023 and GDPR." />
+  <meta property="og:title" content="Terms & Conditions | CLUKSTARS LIMITED" />
+  <meta property="og:description" content="Terms and conditions governing CLUKSTARS Limited sovereign infrastructure services. NDPA 2023 and GDPR compliant." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://clukstars.com/terms.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/png" href="/uploads/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ["'Plus Jakarta Sans'", "sans-serif"], serif: ["'EB Garamond'", "serif"], mono: ["'JetBrains Mono'", "monospace"] },
+          colors: { brand: { red: '#7a0100', bright: '#a1140a', bg: '#f9f9f9', dark: '#1a1c1c', muted: '#5f5e5e', light: '#eeeeee' } }
+        }
+      }
+    }
+  </script>
+  <style>
+    .nav-link { position: relative; font-size: 13px; font-weight: 500; transition: color 0.3s ease; }
+    .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px; background-color: #7a0100; transition: width 0.3s ease; }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    .scroll-reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .scroll-reveal.active { opacity: 1; transform: translateY(0); }
+    .breadcrumb-dot { width: 3px; height: 3px; border-radius: 50%; background: #5f5e5e; opacity: 0.3; }
+    .legal-section { border-bottom: 1px solid rgba(227, 190, 184, 0.15); padding-top: 2rem; padding-bottom: 2rem; }
+    .legal-section:last-child { border-bottom: none; }
+    .legal-section h3 { font-size: 1.1rem; font-weight: 700; color: #1a1c1c; margin-bottom: 0.75rem; letter-spacing: -0.01em; }
+    .legal-section p, .legal-section li { font-size: 0.85rem; line-height: 1.7; color: #5f5e5e; }
+    .legal-section ul { list-style: none; padding-left: 0; margin-top: 0.5rem; }
+    .legal-section ul li { padding-left: 1.25rem; position: relative; margin-bottom: 0.35rem; }
+    .legal-section ul li::before { content: '—'; position: absolute; left: 0; color: #7a0100; }
+    .legal-highlight { background: rgba(122, 1, 0, 0.04); border-left: 3px solid #7a0100; border-radius: 0.5rem; padding: 1rem 1.25rem; margin: 1rem 0; }
+    .legal-highlight p { font-size: 0.8rem; margin: 0; }
+    .scroll-reveal-delay-100 { transition-delay: 100ms; }
+    .scroll-reveal-delay-200 { transition-delay: 200ms; }
+    .scroll-reveal-delay-300 { transition-delay: 300ms; }
+    .scroll-reveal-delay-400 { transition-delay: 400ms; }
+    .scroll-reveal-delay-500 { transition-delay: 500ms; }
+    .scroll-reveal-delay-600 { transition-delay: 600ms; }
+    .scroll-reveal-delay-700 { transition-delay: 700ms; }
+    .scroll-reveal-delay-800 { transition-delay: 800ms; }
+    .scroll-to-top {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 40; width: 44px; height: 44px; border-radius: 50%;
+      background: #a1140a; color: white; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(161,20,10,0.25); cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0; transform: translateY(20px); pointer-events: none;
+    }
+    .scroll-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .scroll-to-top:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 8px 24px rgba(161,20,10,0.35); }
+  </style>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+</head>
+<body class="bg-brand-bg text-brand-dark overflow-x-hidden antialiased">
+  <div id="app"></div>
+  <script type="text/babel">
+    function Icon({ name, className = "w-5 h-5", ...props }) {
+      const getSvg = () => {
+        switch(name) {
+          case "ArrowRight": return <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />;
+          case "X": return <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />;
+          case "Menu": return <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />;
+          case "Shield": return <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />;
+          case "Lightbulb": return <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />;
+          case "Globe": return <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />;
+          case "Users": return <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />;
+          default: return null;
+        }
+      };
+      return <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className={className} {...props}>{getSvg()}</svg>;
+    }
+
+    function CountUp({ end, duration = 1500, suffix = "", delay = 0, as = "span" }) {
+      const [count, setCount] = React.useState(0);
+      const ref = React.useRef(null);
+      const hasAnimated = React.useRef(false);
+      React.useEffect(() => {
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting && !hasAnimated.current) {
+              hasAnimated.current = true;
+              setTimeout(() => {
+                const startTime = Date.now();
+                const animate = () => {
+                  const elapsed = Date.now() - startTime;
+                  const progress = Math.min(elapsed / duration, 1);
+                  const eased = 1 - Math.pow(1 - progress, 3);
+                  setCount(Math.floor(eased * end));
+                  if (progress < 1) requestAnimationFrame(animate);
+                };
+                requestAnimationFrame(animate);
+              }, delay);
+              observer.unobserve(entry.target);
+            }
+          },
+          { threshold: 0.3 }
+        );
+        if (ref.current) observer.observe(ref.current);
+        return () => observer.disconnect();
+      }, [end, duration, delay]);
+      return React.createElement(as, { ref }, count);
+    }
+
+    function staggerDelay(idx) {
+      return `scroll-reveal-delay-${Math.min(idx * 120, 800)}`;
+    }
+
+    function ScrollToTop() {
+      const [visible, setVisible] = React.useState(false);
+      React.useEffect(() => {
+        const handleScroll = () => setVisible(window.scrollY > 400);
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+      }, []);
+      return (
+        <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className={`scroll-to-top ${visible ? 'visible' : ''}`} aria-label="Scroll to top">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+          </svg>
+        </button>
+      );
+    }
+
+    const cms = window.__CMS__ || {};
+    const cmsBrand = cms.brand || {};
+    const cmsOrg = cms.organization || {};
+
+    function Navbar({ activePage }) {
+      const [scrolled, setScrolled] = React.useState(false);
+      const [hidden, setHidden] = React.useState(false);
+      const [mobileOpen, setMobileOpen] = React.useState(false);
+      const lastScrollY = React.useRef(0);
+      const touchStartX = React.useRef(0);
+
+      React.useEffect(() => {
+        const handleScroll = () => {
+          const currentY = window.scrollY;
+          setScrolled(currentY > 20);
+          if (currentY > 80) {
+            setHidden(currentY > lastScrollY.current);
+          } else {
+            setHidden(false);
+          }
+          lastScrollY.current = currentY;
+        };
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+      }, []);
+
+      React.useEffect(() => {
+        if (!mobileOpen) return;
+        const handleTouchStart = (e) => { touchStartX.current = e.touches[0].clientX; };
+        const handleTouchEnd = (e) => {
+          const dx = e.changedTouches[0].clientX - touchStartX.current;
+          if (dx > 80) setMobileOpen(false);
+        };
+        document.addEventListener('touchstart', handleTouchStart, { passive: true });
+        document.addEventListener('touchend', handleTouchEnd, { passive: true });
+        return () => { document.removeEventListener('touchstart', handleTouchStart); document.removeEventListener('touchend', handleTouchEnd); };
+      }, [mobileOpen]);
+
+      const defaultLinks = [
+        { name: 'Home', href: 'index.html', id: 'home' }, { name: 'About', href: 'about.html', id: 'about' },
+        { name: 'Services', href: 'services.html', id: 'services' }, { name: 'Team', href: 'team.html', id: 'team' },
+        { name: 'Case Studies', href: 'case-studies.html', id: 'case-studies' }, { name: 'Blog', href: 'blog.html', id: 'blog' },
+        { name: 'Contact', href: 'contact.html', id: 'contact' },
+      ];
+      const cmsRaw = cms.navbar?.links;
+      const links = cmsRaw && cmsRaw.length > 0
+        ? cmsRaw.map(function(l) {
+            var label = l.label || l.name || 'Link';
+            var href = l.href || '#';
+            if (!href.endsWith('.html') && !href.startsWith('#') && !href.startsWith('http')) {
+              href = ((href === '/' ? '' : href.replace(/\/$/, '')) || '') + '.html';
+              if (href === '.html') href = 'index.html';
+            }
+            var id = l.id || href.replace(/^\//, '').replace(/\.html$/, '').replace(/\/$/, '') || 'home';
+            return { name: label, href: href, id: id };
+          })
+        : defaultLinks;
+      return (
+        <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm border-b border-[#e3beb8]/10' : 'bg-transparent'} ${hidden ? '-translate-y-full' : 'translate-y-0'}`}>
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 lg:px-20 xl:px-28">
+            <div className="flex items-center justify-between h-16 md:h-20">
+              <a href="index.html" className="flex items-center gap-2"><img src={cmsBrand.logoUrl || '/uploads/logocluc.png'} alt={cmsOrg.name || 'CLUKSTARS'} className="h-8 w-auto" /></a>
+              <div className="hidden md:flex items-center gap-8">
+                {links.map(link => (
+                  <a key={link.id} href={link.href} className={`nav-link relative text-sm font-sans font-medium transition-colors ${activePage === link.id ? 'text-brand-red' : 'text-brand-muted hover:text-brand-dark'}`}>
+                    {link.name}
+                    {activePage === link.id && <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-brand-red rounded-full" />}
+                  </a>
+                ))}
+              </div>
+              <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden w-10 h-10 flex items-center justify-center text-brand-dark hover:text-brand-red transition-colors cursor-pointer">
+                <Icon name={mobileOpen ? "X" : "Menu"} className="w-5 h-5" />
+              </button>
+            </div>
+            {mobileOpen && (
+              <div className="md:hidden pb-4 border-t border-[#e3beb8]/10 pt-4">
+                {links.map(link => (
+                  <a key={link.id} href={link.href} className={`block py-3 px-2 text-sm font-sans font-medium rounded-lg transition-colors ${activePage === link.id ? 'text-brand-red bg-brand-red/5' : 'text-brand-muted hover:text-brand-dark hover:bg-brand-bg'}`}>
+                    {link.name}
+                  </a>
+                ))}
+                <p className="text-[10px] font-mono text-brand-muted/40 text-center pt-4 mt-2 border-t border-[#e3beb8]/10">Swipe right to close</p>
+              </div>
+            )}
+          </div>
+        </nav>
+      );
+    }
+
+    function Footer() {
+      var cmsFooter = cms.footer || {};
+      var rawCols = cmsFooter.columns;
+      var parsedCols = [];
+      if (rawCols) {
+        try { parsedCols = typeof rawCols === 'string' ? JSON.parse(rawCols) : rawCols; } catch (e) {}
+      }
+      if (!Array.isArray(parsedCols)) parsedCols = [];
+      var displayCols = parsedCols.length > 0 ? parsedCols : [
+        { title: 'Services', links: [{ label: 'Public Sector', href: 'services.html' }, { label: 'Private Sector', href: 'services.html' }, { label: 'Infrastructure', href: 'services.html' }] },
+        { title: 'Company', links: [{ label: 'About Us', href: 'about.html' }, { label: 'Our Team', href: 'team.html' }, { label: 'Contact', href: 'contact.html' }] },
+      ];
+      var copyrightRaw = cmsFooter.copyright || '\u00A9 {year} CLUKSTARS Limited \u00B7 All Rights Reserved \u00B7 Abuja, Nigeria';
+      var copyright = copyrightRaw.replace('{year}', String(new Date().getFullYear()));
+      return (
+        <footer className="relative z-10 bg-[#0d0e11] text-white/50 border-t border-white/5 font-sans">
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 lg:px-20 xl:px-28 py-16 md:py-20">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16">
+              <div className="md:col-span-5 space-y-4">
+                <img src={cmsBrand.logoUrl || '/uploads/logocluc.png'} alt={cmsOrg.name || 'CLUKSTARS'} className="h-8 w-auto brightness-0 invert" />
+                <p className="text-xs md:text-sm text-white/40 max-w-sm leading-relaxed">{cmsOrg.tagline || 'Empowering governments and enterprises with cutting-edge technology solutions for a digital future.'}</p>
+              </div>
+              <div className="md:col-span-7 grid grid-cols-3 gap-6">
+                {displayCols.map(function(col) {
+                  return (
+                    <div key={col.title || col.label} className="space-y-4">
+                      <h4 className="text-[10px] font-mono font-semibold uppercase tracking-widest text-white/30">{col.title || col.label}</h4>
+                      <div className="space-y-2.5">
+                        {(col.links || []).map(function(link) {
+                          return <a key={link.label || link.href} href={link.href || '#'} className="block text-xs md:text-sm text-white/50 hover:text-white transition-colors">{link.label || link.name}</a>;
+                        })}
+                      </div>
+                    </div>
+                  );
+                })}
+                <div className="space-y-4">
+                  <h4 className="text-[10px] font-mono font-semibold uppercase tracking-widest text-white/30">Contact</h4>
+                  <div className="space-y-2.5">
+                    <a href={'mailto:' + (cmsOrg.email || 'info@clukstars.com')} className="block text-xs md:text-sm text-white/50 hover:text-white transition-colors break-all">{cmsOrg.email || 'info@clukstars.com'}</a>
+                    <span className="block text-xs md:text-sm text-white/40">{cmsOrg.phone || '+234 901 642 8181'}</span>
+                    <span className="block text-xs md:text-sm text-white/40">{cmsOrg.address || '13 Ahmed Joda Crescent, Kado Estate, Abuja, FCT, Nigeria'}</span>
+                    <a href="contact.html" className="block text-xs md:text-sm text-[#a1140a] hover:text-white transition-colors font-medium">Send a Message</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
+              <p className="text-[10px] md:text-xs font-mono text-white/80">{copyright}</p>
+              <div className="flex gap-6 text-[10px] md:text-xs font-mono">
+                <a href="privacy.html" className="text-white/80 hover:text-white transition-colors">Privacy Policy</a>
+                <a href="terms.html" className="text-white/80 hover:text-white transition-colors">Terms &amp; Conditions</a>
+              </div>
+            </div>
+          </div>
+        </footer>
+      );
+    }
+
+    function TermsPage() {
+      React.useEffect(() => {
+        const observer = new IntersectionObserver(
+          (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); observer.unobserve(e.target); } }),
+          { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+        );
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+        return () => observer.disconnect();
+      }, []);
+
+      const sections = [
+        {
+          title: "1. Acceptance of Terms",
+          content: "By accessing or using any CLUKSTARS LIMITED ('CLUKSTARS', 'we', 'us', 'our') websites, platforms, application programming interfaces (APIs), software development kits (SDKs), or any other digital services (collectively, the 'Services'), you agree to be bound by these Terms & Conditions ('Terms'). If you are entering into these Terms on behalf of an organisation, government entity, or enterprise, you represent that you have the authority to bind that entity. If you do not agree to these Terms, you must not access or use the Services."
+        },
+        {
+          title: "2. Description of Services",
+          content: "CLUKSTARS provides sovereign infrastructure engineering services including but not limited to: AI-driven e-governance solutions, bespoke software development for public and private sectors, compliance automation systems, zero-trust security meshes, healthcare and education digital infrastructure, and energy and marine technology deployments. Our Services are designed for government agencies, enterprises, and regulated institutions requiring high-assurance digital infrastructure. We reserve the right to modify, suspend, or discontinue any aspect of the Services at any time with reasonable notice.",
+          highlight: "All Services are delivered in compliance with the Nigeria Data Protection Act 2023 (NDPA 2023), the General Data Protection Regulation (GDPR) where applicable, and relevant sector-specific regulations."
+        },
+        {
+          title: "3. User Obligations & Conduct",
+          content: "",
+          items: [
+            "Provide accurate, current, and complete information when engaging with our Services",
+            "Maintain the confidentiality of any authentication credentials, API keys, or access tokens issued",
+            "Use the Services only in compliance with all applicable laws, regulations, and government directives",
+            "Not attempt to circumvent, disable, or interfere with security features or compliance mechanisms",
+            "Not reverse-engineer, decompile, or disassemble any software or infrastructure provided by CLUKSTARS",
+            "Not use the Services for any unlawful purpose or in violation of any export control or sanctions regime",
+            "Promptly notify CLUKSTARS of any actual or suspected security breach or unauthorised access"
+          ]
+        },
+        {
+          title: "4. Intellectual Property Rights",
+          content: "All intellectual property rights in the Services, including but not limited to software, algorithms, frameworks, dashboards, APIs, documentation, designs, trademarks, and trade secrets, are owned by CLUKSTARS or our licensors. Subject to these Terms, we grant you a limited, non-exclusive, non-transferable, revocable licence to access and use the Services for your internal business or governmental purposes. No ownership rights are transferred. You may not copy, modify, distribute, sell, or create derivative works without our prior written consent.",
+          highlight: "CLUKSTARS, the CLUKSTARS logo, and all related names, logos, product and service names are trademarks of CLUKSTARS LIMITED. You may not use these marks without our express written permission."
+        },
+        {
+          title: "5. Confidentiality & Data Protection",
+          content: "CLUKSTARS is committed to protecting the confidentiality and security of your data. Our data processing practices are governed by our Privacy Policy. Both parties agree to maintain the confidentiality of any non-public technical, business, or security information disclosed during the course of engagement. CLUKSTARS implements appropriate technical and organisational measures to ensure a level of security appropriate to the risk, including: encryption at rest and in transit, access controls based on least-privilege principles, continuous monitoring and intrusion detection, and regular security audits and penetration testing.",
+          items: [
+            "All personal data is processed in accordance with the NDPA 2023 and GDPR",
+            "Data processing agreements (DPAs) are available upon request for enterprise clients",
+            "We maintain records of processing activities as required under Article 30 of the GDPR",
+            "Data breaches are reported to the Nigeria Data Protection Commission (NDPC) and relevant supervisory authorities within 72 hours"
+          ]
+        },
+        {
+          title: "6. Third-Party Services & Integrations",
+          content: "Our Services may integrate with or link to third-party platforms, services, or content. CLUKSTARS does not control and is not responsible for the availability, accuracy, security, or privacy practices of such third-party services. Any interactions with third-party services are solely between you and the third party. We encourage you to review the terms and privacy policies of any third-party services you use."
+        },
+        {
+          title: "7. Limitation of Liability",
+          content: "To the maximum extent permitted by applicable law under the laws of the Federal Republic of Nigeria, CLUKSTARS and its directors, officers, employees, and affiliates shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, use, goodwill, or other intangible losses, arising out of or in connection with your use of the Services. Our total aggregate liability for any claim arising under these Terms shall not exceed the fees paid by you to CLUKSTARS in the twelve (12) months preceding the event giving rise to the claim.",
+          highlight: "This limitation of liability does not apply to: (a) death or personal injury caused by negligence; (b) fraud or fraudulent misrepresentation; (c) breach of confidentiality obligations; or (d) any liability that cannot be excluded or limited under applicable law."
+        },
+        {
+          title: "8. Indemnification",
+          content: "You agree to indemnify, defend, and hold harmless CLUKSTARS, its directors, officers, employees, and agents from and against any and all claims, damages, obligations, losses, liabilities, costs, or expenses arising from: (a) your use of or access to the Services; (b) your violation of these Terms; (c) your violation of any third-party right, including intellectual property or privacy rights; or (d) any claim that your use of the Services caused damage to a third party. CLUKSTARS reserves the right, at your expense, to assume the exclusive defence and control of any matter for which you are required to indemnify us."
+        },
+        {
+          title: "9. Term & Termination",
+          content: "These Terms remain in effect for the duration of your engagement with our Services. We may terminate or suspend your access to the Services immediately, without prior notice, if: (a) you breach any provision of these Terms; (b) your conduct could harm CLUKSTARS's reputation or operations; (c) required by applicable law or regulatory directive; or (d) we discontinue the Services. Upon termination, your right to access the Services ceases immediately. Sections concerning Intellectual Property, Confidentiality, Limitation of Liability, and Indemnification shall survive termination."
+        },
+        {
+          title: "10. Governing Law & Dispute Resolution",
+          content: "These Terms shall be governed by and construed in accordance with the laws of the Federal Republic of Nigeria, without regard to its conflict of law provisions. Any dispute arising out of or relating to these Terms or the Services shall first be attempted to be resolved through good-faith negotiations. If the dispute cannot be resolved within thirty (30) days, it shall be referred to binding arbitration in accordance with the Arbitration and Conciliation Act, Cap A18, Laws of the Federation of Nigeria. The arbitration shall be conducted in English, in Abuja, Nigeria, by a single arbitrator mutually agreed upon. The decision of the arbitrator shall be final and binding on both parties.",
+          highlight: "Notwithstanding the foregoing, CLUKSTARS may seek injunctive or other equitable relief from the courts of the Federal Republic of Nigeria to protect its intellectual property or confidential information."
+        },
+        {
+          title: "11. Modifications to Terms",
+          content: "CLUKSTARS reserves the right to modify or update these Terms at any time. We will notify you of material changes via email, platform notification, or by posting a notice on our website at least thirty (30) days before the changes take effect. Your continued use of the Services after the effective date of the modified Terms constitutes your acceptance of the changes. If you do not agree to the modified Terms, you must discontinue use of the Services."
+        },
+        {
+          title: "12. General Provisions",
+          content: "",
+          items: [
+            "Force Majeure: CLUKSTARS shall not be liable for any failure or delay in performance caused by events beyond its reasonable control",
+            "Severability: If any provision of these Terms is held to be invalid or unenforceable, the remaining provisions shall remain in full force and effect",
+            "Waiver: The failure to enforce any right or provision of these Terms shall not constitute a waiver of such right or provision",
+            "Assignment: You may not assign or transfer your rights or obligations under these Terms without our prior written consent",
+            "Entire Agreement: These Terms, together with our Privacy Policy and any applicable Data Processing Agreement, constitute the entire agreement between you and CLUKSTARS"
+          ]
+        },
+        {
+          title: "13. Contact Information",
+          content: "For questions, concerns, or requests regarding these Terms, please contact us:",
+          items: [
+            "Registered Entity: CLUKSTARS LIMITED",
+            "Registration Number: RC:xxxxxxxx",
+            "Registered Address: 33 Parakou Street, Wuse 2, Abuja FCT, Nigeria",
+            "Email: info@clukstars.com",
+            "Data Protection Officer: dpo@clukstars.com",
+            "Phone: +234 901 642 8181"
+          ]
+        }
+      ];
+
+      return (
+        <div className="min-h-screen bg-brand-bg font-sans">
+          <Navbar activePage="terms" />
+
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 lg:px-20 xl:px-28 pt-28">
+            <nav className="flex items-center gap-2 text-xs font-mono text-brand-muted/60">
+              <a href="index.html" className="hover:text-brand-red transition-colors">Home</a>
+              <span className="text-brand-muted/30">/</span>
+              <span className="text-brand-red font-medium">Terms &amp; Conditions</span>
+            </nav>
+          </div>
+
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 lg:px-20 xl:px-28 pt-36 pb-24">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start mb-16">
+              <div className="lg:col-span-6 space-y-6">
+                <div className="scroll-reveal flex items-center gap-3">
+                  <div className="w-8 h-[1px] bg-brand-red"></div>
+                  <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-red">Terms &amp; Conditions</span>
+                </div>
+                <h1 className="scroll-reveal scroll-reveal-delay-100 font-serif text-5xl md:text-[56px] leading-[1.05] text-brand-dark font-medium tracking-tight">
+                  Legal framework governing our <span className="italic text-brand-bright">sovereign services</span>
+                </h1>
+              </div>
+              <div className="lg:col-span-6 lg:pt-16 space-y-5">
+                <p className="scroll-reveal scroll-reveal-delay-200 font-sans text-base text-brand-muted leading-relaxed">
+                  These Terms &amp; Conditions govern your access to and use of CLUKSTARS Limited's sovereign infrastructure services, software platforms, and digital solutions. Please read them carefully.
+                </p>
+                <p className="scroll-reveal scroll-reveal-delay-300 font-sans text-sm text-brand-muted leading-relaxed">
+                  Last updated: [Effective Date: DD Month YYYY]. These Terms are compliant with the Nigeria Data Protection Act 2023 (NDPA 2023) and the General Data Protection Regulation (GDPR).
+                </p>
+              </div>
+            </div>
+
+            <div className="scroll-reveal bg-white border border-[#e3beb8]/15 rounded-2xl p-8 md:p-12 shadow-sm">
+              <div className="max-w-4xl">
+                {sections.map((section, idx) => (
+                  <div key={idx} className={`legal-section scroll-reveal ${staggerDelay(idx)}`}>
+                    <h3>{section.title}</h3>
+                    {section.content && <p>{section.content}</p>}
+                    {section.items && (
+                      <ul>
+                        {section.items.map((item, i) => (
+                          <li key={i}>{item}</li>
+                        ))}
+                      </ul>
+                    )}
+                    {section.highlight && (
+                      <div className="legal-highlight">
+                        <p className="text-brand-muted">{section.highlight}</p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="scroll-reveal scroll-reveal-delay-400 mt-12 p-6 rounded-xl bg-brand-red/5 border border-brand-red/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+              <div className="space-y-1">
+                <p className="text-sm font-bold text-brand-dark">Need clarification?</p>
+                <p className="text-xs text-brand-muted">Our legal and compliance team is available to address any questions about these terms.</p>
+              </div>
+              <a href="contact.html" className="shrink-0 bg-brand-bright hover:bg-brand-red text-white font-bold text-xs px-6 py-3 rounded-full flex items-center gap-2 transition-all shadow-sm hover:shadow-md">
+                Contact Legal <Icon name="ArrowRight" className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+
+          <Footer />
+          <ScrollToTop />
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('app'));
+    root.render(<TermsPage />);
+  </script>
+</body>
+</html>

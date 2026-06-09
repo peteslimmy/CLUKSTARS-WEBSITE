@@ -1,0 +1,22 @@
+# Backend
+backend/node_modules/
+backend/dist/
+backend/.env
+
+# Admin
+admin/node_modules/
+admin/dist/
+admin/.env
+
+# Docker
+postgres_data/
+redis_data/
+minio_data/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

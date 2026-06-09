@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Team | CLUKSTARS LIMITED</title>
+  <meta name="description" content="Meet the seasoned leadership team at CLUKSTARS — ex-Ministry of Defense engineers, ISO 27001 auditors, and pioneers of zero-trust sovereign infrastructure." />
+  <meta property="og:title" content="Our Team | CLUKSTARS LIMITED" />
+  <meta property="og:description" content="Meet the seasoned leadership team at CLUKSTARS - ex-Ministry of Defense engineers, ISO 27001 auditors, and pioneers of zero-trust sovereign infrastructure." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://clukstars.com/team.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/png" href="/uploads/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ["'Plus Jakarta Sans'", "sans-serif"], serif: ["'EB Garamond'", "serif"], mono: ["'JetBrains Mono'", "monospace"] },
+          colors: { brand: { red: '#7a0100', bright: '#a1140a', bg: '#f9f9f9', dark: '#1a1c1c', muted: '#5f5e5e', light: '#eeeeee' } }
+        }
+      }
+    }
+  </script>
+  <style>
+    .nav-link { position: relative; font-size: 13px; font-weight: 500; transition: color 0.3s ease; }
+    .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px; background-color: #7a0100; transition: width 0.3s ease; }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    .scroll-reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .scroll-reveal.active { opacity: 1; transform: translateY(0); }
+    .scroll-reveal-delay-100 { transition-delay: 100ms; }
+    .scroll-reveal-delay-200 { transition-delay: 200ms; }
+    .scroll-reveal-delay-300 { transition-delay: 300ms; }
+    .scroll-reveal-delay-400 { transition-delay: 400ms; }
+    .scroll-reveal-delay-500 { transition-delay: 500ms; }
+    .scroll-reveal-delay-600 { transition-delay: 600ms; }
+    .scroll-reveal-delay-700 { transition-delay: 700ms; }
+    .scroll-reveal-delay-800 { transition-delay: 800ms; }
+    .team-card { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .team-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(122,1,0,0.09); }
+    .team-card:hover .avatar-ring { border-color: #a1140a; }
+    .avatar-ring { transition: border-color 0.3s ease; }
+    .breadcrumb-dot { width: 3px; height: 3px; border-radius: 50%; background: #5f5e5e; opacity: 0.3; }
+    .scroll-to-top {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 40; width: 44px; height: 44px; border-radius: 50%;
+      background: #a1140a; color: white; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(161,20,10,0.25); cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0; transform: translateY(20px); pointer-events: none;
+    }
+    .scroll-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .scroll-to-top:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 8px 24px rgba(161,20,10,0.35); }
+  </style>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+</head>
+<body class="bg-brand-bg text-brand-dark overflow-x-hidden antialiased">
+  <div id="app"></div>
+  <script type="text/babel">
+    function Icon({ name, className = "w-5 h-5", ...props }) {
+      const getSvg = () => {
+        switch(name) {
+          case "ArrowRight": return <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />;
+          case "X": return <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />;
+          case "Menu": return <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />;
+          default: return null;
+        }
+      };
+      return <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className={className} {...props}>{getSvg()}</svg>;
+    }
+
+    function CountUp({ end, duration = 1500, suffix = "", delay = 0, as = "span" }) {
+      const [count, setCount] = React.useState(0);
+      const ref = React.useRef(null);
+      const hasAnimated = React.useRef(false);
+      React.useEffect(() => {
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting && !hasAnimated.current) {
+              hasAnimated.current = true;
+              setTimeout(() => {
+                const startTime = Date.now();
+                const animate = () => {
+                  const elapsed = Date.now() - startTime;
+                  const progress = Math.min(elapsed / duration, 1);
+                  const eased = 1 - Math.pow(1 - progress, 3);
+                  setCount(Math.floor(eased * end));
+                  if (progress < 1) requestAnimationFrame(animate);
+                };
+                requestAnimationFrame(animate);
+              }, delay);
+              observer.unobserve(entry.target);
+            }
+          },
+          { threshold: 0.3 }
+        );
+        if (ref.current) observer.observe(ref.current);
+        return () => observer.disconnect();
+      }, [end, duration, delay]);
+      return React.createElement(as, { ref }, count);
+    }
+
+    function staggerDelay(idx) {
+      return `scroll-reveal-delay-${Math.min(idx * 120, 800)}`;
+    }
+
+    function ScrollToTop() {
+      const [visible, setVisible] = React.useState(false);
+      React.useEffect(() => {
+        const handleScroll = () => setVisible(window.scrollY > 400);
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+      }, []);
+      return (
+        <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className={`scroll-to-top ${visible ? 'visible' : ''}`} aria-label="Scroll to top">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+          </svg>
+        </button>
+      );
+    }
+
+    const cms = window.__CMS__ || {};
+    const cmsBrand = cms.brand || {};
+    const cmsOrg = cms.organization || {};
+
+    function Navbar({ activePage }) {
+      const [scrolled, setScrolled] = React.useState(false);
+      const [hidden, setHidden] = React.useState(false);
+      const [mobileOpen, setMobileOpen] = React.useState(false);
+      const lastScrollY = React.useRef(0);
+      const touchStartX = React.useRef(0);
+
+      React.useEffect(() => {
+        const handleScroll = () => {
+          const currentY = window.scrollY;
+          setScrolled(currentY > 20);
+          if (currentY > 80) {
+            setHidden(currentY > lastScrollY.current);
+          } else {
+            setHidden(false);
+          }
+          lastScrollY.current = currentY;
+        };
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+      }, []);
+
+      React.useEffect(() => {
+        if (!mobileOpen) return;
+        const handleTouchStart = (e) => { touchStartX.current = e.touches[0].clientX; };
+        const handleTouchEnd = (e) => {
+          const dx = e.changedTouches[0].clientX - touchStartX.current;
+          if (dx > 80) setMobileOpen(false);
+        };
+        document.addEventListener('touchstart', handleTouchStart, { passive: true });
+        document.addEventListener('touchend', handleTouchEnd, { passive: true });
+        return () => { document.removeEventListener('touchstart', handleTouchStart); document.removeEventListener('touchend', handleTouchEnd); };
+      }, [mobileOpen]);
+
+      const defaultLinks = [
+        { name: 'Home', href: 'index.html', id: 'home' }, { name: 'About', href: 'about.html', id: 'about' },
+        { name: 'Services', href: 'services.html', id: 'services' }, { name: 'Team', href: 'team.html', id: 'team' },
+        { name: 'Case Studies', href: 'case-studies.html', id: 'case-studies' }, { name: 'Blog', href: 'blog.html', id: 'blog' },
+        { name: 'Contact', href: 'contact.html', id: 'contact' },
+      ];
+      const cmsRaw = cms.navbar?.links;
+      const links = cmsRaw && cmsRaw.length > 0
+        ? cmsRaw.map(function(l) {
+            var label = l.label || l.name || 'Link';
+            var href = l.href || '#';
+            if (!href.endsWith('.html') && !href.startsWith('#') && !href.startsWith('http')) {
+              href = ((href === '/' ? '' : href.replace(/\/$/, '')) || '') + '.html';
+              if (href === '.html') href = 'index.html';
+            }
+            var id = l.id || href.replace(/^\//, '').replace(/\.html$/, '').replace(/\/$/, '') || 'home';
+            return { name: label, href: href, id: id };
+          })
+        : defaultLinks;
+      return (
+        <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm border-b border-[#e3beb8]/10' : 'bg-transparent'} ${hidden ? '-translate-y-full' : 'translate-y-0'}`}>
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 lg:px-20 xl:px-28">
+            <div className="flex items-center justify-between h-16 md:h-20">
+              <a href="index.html" className="flex items-center gap-2"><img src={cmsBrand.logoUrl || '/uploads/logocluc.png'} alt={cmsOrg.name || 'CLUKSTARS'} className="h-8 w-auto" /></a>
+              <div className="hidden md:flex items-center gap-8">
+                {links.map(link => (
+                  <a key={link.id} href={link.href} className={`nav-link relative text-sm font-sans font-medium transition-colors ${activePage === link.id ? 'text-brand-red' : 'text-brand-muted hover:text-brand-dark'}`}>
+                    {link.name}
+                    {activePage === link.id && <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-brand-red rounded-full" />}
+                  </a>
+                ))}
+              </div>
+              <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden w-10 h-10 flex items-center justify-center text-brand-dark hover:text-brand-red transition-colors cursor-pointer">
+                <Icon name={mobileOpen ? "X" : "Menu"} className="w-5 h-5" />
+              </button>
+            </div>
+            {mobileOpen && (
+              <div className="md:hidden pb-4 border-t border-[#e3beb8]/10 pt-4">
+                {links.map(link => (
+                  <a key={link.id} href={link.href} className={`block py-3 px-2 text-sm font-sans font-medium rounded-lg transition-colors ${activePage === link.id ? 'text-brand-red bg-brand-red/5' : 'text-brand-muted hover:text-brand-dark hover:bg-brand-bg'}`}>
+                    {link.name}
+                  </a>
+                ))}
+                <p className="text-[10px] font-mono text-brand-muted/40 text-center pt-4 mt-2 border-t border-[#e3beb8]/10">Swipe right to close</p>
+              </div>
+            )}
+          </div>
+        </nav>
+      );
+    }
+
+    function Footer() {
+      var cmsFooter = cms.footer || {};
+      var rawCols = cmsFooter.columns;
+      var parsedCols = [];
+      if (rawCols) {
+        try { parsedCols = typeof rawCols === 'string' ? JSON.parse(rawCols) : rawCols; } catch (e) {}
+      }
+      if (!Array.isArray(parsedCols)) parsedCols = [];
+      var displayCols = parsedCols.length > 0 ? parsedCols : [
+        { title: 'Services', links: [{ label: 'Public Sector', href: 'services.html' }, { label: 'Private Sector', href: 'services.html' }, { label: 'Infrastructure', href: 'services.html' }] },
+        { title: 'Company', links: [{ label: 'About Us', href: 'about.html' }, { label: 'Our Team', href: 'team.html' }, { label: 'Contact', href: 'contact.html' }] },
+      ];
+      var copyrightRaw = cmsFooter.copyright || '\u00A9 {year} CLUKSTARS Limited \u00B7 All Rights Reserved \u00B7 Abuja, Nigeria';
+      var copyright = copyrightRaw.replace('{year}', String(new Date().getFullYear()));
+      return (
+        <footer className="relative z-10 bg-[#0d0e11] text-white/50 border-t border-white/5 font-sans">
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 lg:px-20 xl:px-28 py-16 md:py-20">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16">
+              <div className="md:col-span-5 space-y-4">
+                <img src={cmsBrand.logoUrl || '/uploads/logocluc.png'} alt={cmsOrg.name || 'CLUKSTARS'} className="h-8 w-auto brightness-0 invert" />
+                <p className="text-xs md:text-sm text-white/40 max-w-sm leading-relaxed">{cmsOrg.tagline || 'Empowering governments and enterprises with cutting-edge technology solutions for a digital future.'}</p>
+              </div>
+              <div className="md:col-span-7 grid grid-cols-3 gap-6">
+                {displayCols.map(function(col) {
+                  return (
+                    <div key={col.title || col.label} className="space-y-4">
+                      <h4 className="text-[10px] font-mono font-semibold uppercase tracking-widest text-white/30">{col.title || col.label}</h4>
+                      <div className="space-y-2.5">
+                        {(col.links || []).map(function(link) {
+                          return <a key={link.label || link.href} href={link.href || '#'} className="block text-xs md:text-sm text-white/50 hover:text-white transition-colors">{link.label || link.name}</a>;
+                        })}
+                      </div>
+                    </div>
+                  );
+                })}
+                <div className="space-y-4">
+                  <h4 className="text-[10px] font-mono font-semibold uppercase tracking-widest text-white/30">Contact</h4>
+                  <div className="space-y-2.5">
+                    <a href={'mailto:' + (cmsOrg.email || 'info@clukstars.com')} className="block text-xs md:text-sm text-white/50 hover:text-white transition-colors break-all">{cmsOrg.email || 'info@clukstars.com'}</a>
+                    <span className="block text-xs md:text-sm text-white/40">{cmsOrg.phone || '+234 901 642 8181'}</span>
+                    <span className="block text-xs md:text-sm text-white/40">{cmsOrg.address || '13 Ahmed Joda Crescent, Kado Estate, Abuja, FCT, Nigeria'}</span>
+                    <a href="contact.html" className="block text-xs md:text-sm text-[#a1140a] hover:text-white transition-colors font-medium">Send a Message</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
+              <p className="text-[10px] md:text-xs font-mono text-white/80">{copyright}</p>
+              <div className="flex gap-6 text-[10px] md:text-xs font-mono">
+                <a href="privacy.html" className="text-white/80 hover:text-white transition-colors">Privacy Policy</a>
+                <a href="terms.html" className="text-white/80 hover:text-white transition-colors">Terms &amp; Conditions</a>
+              </div>
+            </div>
+          </div>
+        </footer>
+      );
+    }
+
+    var TEAM = (cms.teamMembers || []).map(function(m) {
+      return {
+        name: m.firstName + ' ' + m.lastName,
+        role: m.title,
+        bio: m.bio || '',
+        tags: m.tags ? m.tags.split(',').map(function(t) { return t.trim(); }).filter(Boolean) : [],
+        image: m.photoUrl || 'https://api.dicebear.com/7.x/avataaars/svg?seed=' + encodeURIComponent(m.firstName + '+' + m.lastName) + '&backgroundColor=7a0100&backgroundType=solid',
+      };
+    });
+
+    function TeamPage() {
+      React.useEffect(() => {
+        const observer = new IntersectionObserver(
+          (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); observer.unobserve(e.target); } }),
+          { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+        );
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+        return () => observer.disconnect();
+      }, []);
+
+      return (
+        <div className="min-h-screen bg-brand-bg font-sans">
+          <Navbar activePage="team" />
+
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 lg:px-20 xl:px-28 pt-28">
+            <nav className="flex items-center gap-2 text-xs font-mono text-brand-muted/60">
+              <a href="index.html" className="hover:text-brand-red transition-colors">Home</a>
+              <span className="text-brand-muted/30">/</span>
+              <span className="text-brand-red font-medium">Team</span>
+            </nav>
+          </div>
+
+          {/* Hero */}
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 lg:px-20 xl:px-28 pt-36 pb-16">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
+              <div className="lg:col-span-7 space-y-5">
+                <div className="scroll-reveal flex items-center gap-3">
+                  <div className="w-8 h-[1px] bg-brand-red"></div>
+                  <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-red">Our Leadership</span>
+                </div>
+                <h1 className="scroll-reveal scroll-reveal-delay-100 font-serif text-5xl md:text-[56px] leading-[1.05] text-brand-dark font-medium tracking-tight">
+                  The minds behind the <span className="italic text-brand-bright">mission</span>
+                </h1>
+              </div>
+              <div className="lg:col-span-5">
+                <p className="scroll-reveal scroll-reveal-delay-200 text-sm md:text-base text-brand-muted leading-relaxed">
+                  Seasoned authorities with deep security clearance backgrounds and proven track records in sovereign digital transformation across Africa and EMEA.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Team grid */}
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 lg:px-20 xl:px-28 pb-24 md:pb-32">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {TEAM.map((m, idx) => (
+                <div
+                  key={m.name}
+                  className={`scroll-reveal team-card bg-white border border-[#e3beb8]/15 p-8 rounded-2xl flex flex-col gap-5
+                    ${idx === 1 ? 'scroll-reveal-delay-100' : idx === 2 ? 'scroll-reveal-delay-200' : idx === 3 ? 'scroll-reveal-delay-300' : idx === 4 ? 'scroll-reveal-delay-100' : idx === 5 ? 'scroll-reveal-delay-200' : ''}`}
+                >
+                  <div className="flex items-start gap-4">
+                    <img src={m.image} alt={m.name} className="avatar-ring w-14 h-14 rounded-full border-2 border-[#e3beb8]/30 object-cover shrink-0" />
+                    <div>
+                      <h2 className="font-bold text-brand-dark tracking-tight">{m.name}</h2>
+                      <p className="text-[10px] font-mono font-semibold text-brand-red uppercase tracking-wider mt-0.5">{m.role}</p>
+                    </div>
+                  </div>
+                  <p className="text-xs md:text-sm text-brand-muted leading-relaxed flex-1">{m.bio}</p>
+                  <div className="flex flex-wrap gap-2 pt-2 border-t border-[#e3beb8]/10">
+                    {m.tags.map(tag => (
+                      <span key={tag} className="px-2.5 py-1 text-[10px] font-sans font-semibold text-brand-bright bg-brand-bright/5 rounded-full">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Dark statement */}
+          <div className="bg-[#0d0e11] border-t border-white/5">
+            <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 lg:px-20 xl:px-28 py-24 md:py-28">
+              <div className="max-w-4xl space-y-6">
+                <div className="scroll-reveal flex items-center gap-3">
+                  <div className="w-8 h-[1px] bg-[#a1140a]"></div>
+                  <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#a1140a]">Our Pedigree</span>
+                </div>
+                <p className="scroll-reveal scroll-reveal-delay-100 font-serif text-3xl md:text-4xl text-white leading-relaxed">
+                  "We don't just understand sovereign infrastructure — we've <span className="italic text-[#a1140a]">built it</span>, at scale, for nations and enterprises that cannot afford to fail."
+                </p>
+              </div>
+              <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                {[
+                  { label: "Combined government deployments", value: "40+" },
+                  { label: "Compliance frameworks mastered", value: "12+" },
+                  { label: "Countries of operational experience", value: "8+" },
+                ].map((s, i) => (
+                  <div key={s.label} className={`scroll-reveal ${i === 1 ? 'scroll-reveal-delay-100' : i === 2 ? 'scroll-reveal-delay-200' : ''}`}>
+                    <div className="font-serif text-5xl font-bold text-white">{s.value}</div>
+                    <div className="text-xs text-white/40 mt-2 font-mono uppercase tracking-wider">{s.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="bg-[#7a0100]">
+            <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 lg:px-20 xl:px-28 py-16 md:py-20">
+              <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-6 h-[1px] bg-white/40"></div>
+                    <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-white/60">Work With Us</span>
+                  </div>
+                  <h3 className="font-serif text-3xl md:text-4xl text-white leading-tight">Ready to <span className="italic">start a conversation?</span></h3>
+                </div>
+                <a href="contact.html" className="shrink-0 bg-white hover:bg-brand-bg text-brand-red font-bold text-xs px-8 py-4 rounded-full flex items-center gap-2.5 shadow-sm hover:shadow-md transition-all whitespace-nowrap">
+                  Get in Touch <Icon name="ArrowRight" className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <Footer />
+          <ScrollToTop />
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('app'));
+    root.render(<TeamPage />);
+  </script>
+</body>
+</html>

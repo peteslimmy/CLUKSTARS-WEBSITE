@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | CLUKSTARS LIMITED</title>
+  <meta name="description" content="Get in touch with CLUKSTARS Limited. Reach our team in Abuja, Nigeria to discuss your sovereign infrastructure, e-governance, or digital transformation needs." />
+  <meta property="og:title" content="Contact | CLUKSTARS LIMITED" />
+  <meta property="og:description" content="Get in touch with CLUKSTARS Limited. Reach our team in Abuja, Nigeria to discuss your sovereign infrastructure, e-governance, or digital transformation needs." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://clukstars.com/contact.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/png" href="/uploads/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ["'Plus Jakarta Sans'", "sans-serif"], serif: ["'EB Garamond'", "serif"], mono: ["'JetBrains Mono'", "monospace"] },
+          colors: { brand: { red: '#7a0100', bright: '#a1140a', bg: '#f9f9f9', dark: '#1a1c1c', muted: '#5f5e5e', light: '#eeeeee' } }
+        }
+      }
+    }
+  </script>
+  <style>
+    .nav-link { position: relative; font-size: 13px; font-weight: 500; transition: color 0.3s ease; }
+    .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px; background-color: #7a0100; transition: width 0.3s ease; }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    .scroll-reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .scroll-reveal.active { opacity: 1; transform: translateY(0); }
+    .scroll-reveal-delay-100 { transition-delay: 100ms; }
+    .scroll-reveal-delay-200 { transition-delay: 200ms; }
+    .scroll-reveal-delay-300 { transition-delay: 300ms; }
+    .scroll-reveal-delay-400 { transition-delay: 400ms; }
+    .scroll-reveal-delay-500 { transition-delay: 500ms; }
+    .scroll-reveal-delay-600 { transition-delay: 600ms; }
+    .scroll-reveal-delay-700 { transition-delay: 700ms; }
+    .scroll-reveal-delay-800 { transition-delay: 800ms; }
+    .breadcrumb-dot { width: 3px; height: 3px; border-radius: 50%; background: #5f5e5e; opacity: 0.3; }
+    .scroll-to-top {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 40; width: 44px; height: 44px; border-radius: 50%;
+      background: #a1140a; color: white; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(161,20,10,0.25); cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0; transform: translateY(20px); pointer-events: none;
+    }
+    .scroll-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .scroll-to-top:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 8px 24px rgba(161,20,10,0.35); }
+  </style>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+</head>
+<body class="bg-brand-bg text-brand-dark overflow-x-hidden antialiased">
+  <div id="app"></div>
+  <script type="text/babel">
+    function Icon({ name, className = "w-5 h-5", ...props }) {
+      const getSvg = () => {
+        switch(name) {
+          case "ArrowRight": return <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />;
+          case "X": return <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />;
+          case "Menu": return <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />;
+          case "Check": return <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />;
+          case "Phone": return <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.622 19.5 18v1.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.75A2.25 2.25 0 016.75 4.5h3.682c.59 0 1.125.347 1.373.885l1.246 2.704a1.25 1.25 0 01-.29 1.46l-1.68 1.48a14.503 14.503 0 006.708 6.708l1.48-1.68a1.25 1.25 0 011.46-.29l2.704 1.246c.538.248.885.783.885 1.373V19.5z" />;
+          case "Mail": return <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />;
+          case "MapPin": return <><path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></>;
+          case "Clock": return <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />;
+          default: return null;
+        }
+      };
+      return <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className={className} {...props}>{getSvg()}</svg>;
+    }
+
+    function CountUp({ end, duration = 1500, suffix = "", delay = 0, as = "span" }) {
+      const [count, setCount] = React.useState(0);
+      const ref = React.useRef(null);
+      const hasAnimated = React.useRef(false);
+      React.useEffect(() => {
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting && !hasAnimated.current) {
+              hasAnimated.current = true;
+              setTimeout(() => {
+                const startTime = Date.now();
+                const animate = () => {
+                  const elapsed = Date.now() - startTime;
+                  const progress = Math.min(elapsed / duration, 1);
+                  const eased = 1 - Math.pow(1 - progress, 3);
+                  setCount(Math.floor(eased * end));
+                  if (progress < 1) requestAnimationFrame(animate);
+                };
+                requestAnimationFrame(animate);
+              }, delay);
+              observer.unobserve(entry.target);
+            }
+          },
+          { threshold: 0.3 }
+        );
+        if (ref.current) observer.observe(ref.current);
+        return () => observer.disconnect();
+      }, [end, duration, delay]);
+      return React.createElement(as, { ref }, count);
+    }
+
+    function staggerDelay(idx) {
+      return `scroll-reveal-delay-${Math.min(idx * 120, 800)}`;
+    }
+
+    function ScrollToTop() {
+      const [visible, setVisible] = React.useState(false);
+      React.useEffect(() => {
+        const handleScroll = () => setVisible(window.scrollY > 400);
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+      }, []);
+      return (
+        <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className={`scroll-to-top ${visible ? 'visible' : ''}`} aria-label="Scroll to top">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+          </svg>
+        </button>
+      );
+    }
+
+    const cms = window.__CMS__ || {};
+    const cmsBrand = cms.brand || {};
+    const cmsOrg = cms.organization || {};
+
+    function Navbar({ activePage }) {
+      const [scrolled, setScrolled] = React.useState(false);
+      const [hidden, setHidden] = React.useState(false);
+      const [mobileOpen, setMobileOpen] = React.useState(false);
+      const lastScrollY = React.useRef(0);
+      const touchStartX = React.useRef(0);
+
+      React.useEffect(() => {
+        const handleScroll = () => {
+          const currentY = window.scrollY;
+          setScrolled(currentY > 20);
+          if (currentY > 80) {
+            setHidden(currentY > lastScrollY.current);
+          } else {
+            setHidden(false);
+          }
+          lastScrollY.current = currentY;
+        };
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+      }, []);
+
+      React.useEffect(() => {
+        if (!mobileOpen) return;
+        const handleTouchStart = (e) => { touchStartX.current = e.touches[0].clientX; };
+        const handleTouchEnd = (e) => {
+          const dx = e.changedTouches[0].clientX - touchStartX.current;
+          if (dx > 80) setMobileOpen(false);
+        };
+        document.addEventListener('touchstart', handleTouchStart, { passive: true });
+        document.addEventListener('touchend', handleTouchEnd, { passive: true });
+        return () => { document.removeEventListener('touchstart', handleTouchStart); document.removeEventListener('touchend', handleTouchEnd); };
+      }, [mobileOpen]);
+
+      const defaultLinks = [
+        { name: 'Home', href: 'index.html', id: 'home' }, { name: 'About', href: 'about.html', id: 'about' },
+        { name: 'Services', href: 'services.html', id: 'services' }, { name: 'Team', href: 'team.html', id: 'team' },
+        { name: 'Case Studies', href: 'case-studies.html', id: 'case-studies' }, { name: 'Blog', href: 'blog.html', id: 'blog' },
+        { name: 'Contact', href: 'contact.html', id: 'contact' },
+      ];
+      const cmsRaw = cms.navbar?.links;
+      const links = cmsRaw && cmsRaw.length > 0
+        ? cmsRaw.map(function(l) {
+            var label = l.label || l.name || 'Link';
+            var href = l.href || '#';
+            if (!href.endsWith('.html') && !href.startsWith('#') && !href.startsWith('http')) {
+              href = ((href === '/' ? '' : href.replace(/\/$/, '')) || '') + '.html';
+              if (href === '.html') href = 'index.html';
+            }
+            var id = l.id || href.replace(/^\//, '').replace(/\.html$/, '').replace(/\/$/, '') || 'home';
+            return { name: label, href: href, id: id };
+          })
+        : defaultLinks;
+      return (
+        <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm border-b border-[#e3beb8]/10' : 'bg-transparent'} ${hidden ? '-translate-y-full' : 'translate-y-0'}`}>
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 lg:px-20 xl:px-28">
+            <div className="flex items-center justify-between h-16 md:h-20">
+              <a href="index.html" className="flex items-center gap-2"><img src={cmsBrand.logoUrl || '/uploads/logocluc.png'} alt={cmsOrg.name || 'CLUKSTARS'} className="h-8 w-auto" /></a>
+              <div className="hidden md:flex items-center gap-8">
+                {links.map(link => (
+                  <a key={link.id} href={link.href} className={`nav-link relative text-sm font-sans font-medium transition-colors ${activePage === link.id ? 'text-brand-red' : 'text-brand-muted hover:text-brand-dark'}`}>
+                    {link.name}
+                    {activePage === link.id && <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-brand-red rounded-full" />}
+                  </a>
+                ))}
+              </div>
+              <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden w-10 h-10 flex items-center justify-center text-brand-dark hover:text-brand-red transition-colors cursor-pointer">
+                <Icon name={mobileOpen ? "X" : "Menu"} className="w-5 h-5" />
+              </button>
+            </div>
+            {mobileOpen && (
+              <div className="md:hidden pb-4 border-t border-[#e3beb8]/10 pt-4">
+                {links.map(link => (
+                  <a key={link.id} href={link.href} className={`block py-3 px-2 text-sm font-sans font-medium rounded-lg transition-colors ${activePage === link.id ? 'text-brand-red bg-brand-red/5' : 'text-brand-muted hover:text-brand-dark hover:bg-brand-bg'}`}>
+                    {link.name}
+                  </a>
+                ))}
+                <p className="text-[10px] font-mono text-brand-muted/40 text-center pt-4 mt-2 border-t border-[#e3beb8]/10">Swipe right to close</p>
+              </div>
+            )}
+          </div>
+        </nav>
+      );
+    }
+
+    function Footer() {
+      var cmsFooter = cms.footer || {};
+      var rawCols = cmsFooter.columns;
+      var parsedCols = [];
+      if (rawCols) {
+        try { parsedCols = typeof rawCols === 'string' ? JSON.parse(rawCols) : rawCols; } catch (e) {}
+      }
+      if (!Array.isArray(parsedCols)) parsedCols = [];
+      var displayCols = parsedCols.length > 0 ? parsedCols : [
+        { title: 'Services', links: [{ label: 'Public Sector', href: 'services.html' }, { label: 'Private Sector', href: 'services.html' }, { label: 'Infrastructure', href: 'services.html' }] },
+        { title: 'Company', links: [{ label: 'About Us', href: 'about.html' }, { label: 'Our Team', href: 'team.html' }, { label: 'Contact', href: 'contact.html' }] },
+      ];
+      var copyrightRaw = cmsFooter.copyright || '\u00A9 {year} CLUKSTARS Limited \u00B7 All Rights Reserved \u00B7 Abuja, Nigeria';
+      var copyright = copyrightRaw.replace('{year}', String(new Date().getFullYear()));
+      return (
+        <footer className="relative z-10 bg-[#0d0e11] text-white/50 border-t border-white/5 font-sans">
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 lg:px-20 xl:px-28 py-16 md:py-20">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16">
+              <div className="md:col-span-5 space-y-4">
+                <img src={cmsBrand.logoUrl || '/uploads/logocluc.png'} alt={cmsOrg.name || 'CLUKSTARS'} className="h-8 w-auto brightness-0 invert" />
+                <p className="text-xs md:text-sm text-white/40 max-w-sm leading-relaxed">{cmsOrg.tagline || 'Empowering governments and enterprises with cutting-edge technology solutions for a digital future.'}</p>
+              </div>
+              <div className="md:col-span-7 grid grid-cols-3 gap-6">
+                {displayCols.map(function(col) {
+                  return (
+                    <div key={col.title || col.label} className="space-y-4">
+                      <h4 className="text-[10px] font-mono font-semibold uppercase tracking-widest text-white/30">{col.title || col.label}</h4>
+                      <div className="space-y-2.5">
+                        {(col.links || []).map(function(link) {
+                          return <a key={link.label || link.href} href={link.href || '#'} className="block text-xs md:text-sm text-white/50 hover:text-white transition-colors">{link.label || link.name}</a>;
+                        })}
+                      </div>
+                    </div>
+                  );
+                })}
+                <div className="space-y-4">
+                  <h4 className="text-[10px] font-mono font-semibold uppercase tracking-widest text-white/30">Contact</h4>
+                  <div className="space-y-2.5">
+                    <a href={'mailto:' + (cmsOrg.email || 'info@clukstars.com')} className="block text-xs md:text-sm text-white/50 hover:text-white transition-colors break-all">{cmsOrg.email || 'info@clukstars.com'}</a>
+                    <span className="block text-xs md:text-sm text-white/40">{cmsOrg.phone || '+234 901 642 8181'}</span>
+                    <span className="block text-xs md:text-sm text-white/40">{cmsOrg.address || '13 Ahmed Joda Crescent, Kado Estate, Abuja, FCT, Nigeria'}</span>
+                    <a href="contact.html" className="block text-xs md:text-sm text-[#a1140a] hover:text-white transition-colors font-medium">Send a Message</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
+              <p className="text-[10px] md:text-xs font-mono text-white/80">{copyright}</p>
+              <div className="flex gap-6 text-[10px] md:text-xs font-mono">
+                <a href="privacy.html" className="text-white/80 hover:text-white transition-colors">Privacy Policy</a>
+                <a href="terms.html" className="text-white/80 hover:text-white transition-colors">Terms &amp; Conditions</a>
+              </div>
+            </div>
+          </div>
+        </footer>
+      );
+    }
+
+    function ContactPage() {
+      const [formData, setFormData] = React.useState({ firstName: "", lastName: "", email: "", organization: "", subject: "", message: "" });
+      const [isSubmitting, setIsSubmitting] = React.useState(false);
+      const [isSuccess, setIsSuccess] = React.useState(false);
+      const [errors, setErrors] = React.useState({});
+
+      React.useEffect(() => {
+        const observer = new IntersectionObserver(
+          (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); observer.unobserve(e.target); } }),
+          { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+        );
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+        return () => observer.disconnect();
+      }, []);
+
+      const validate = () => {
+        const e = {};
+        if (!formData.firstName.trim()) e.firstName = "First name is required";
+        if (!formData.lastName.trim()) e.lastName = "Last name is required";
+        if (!formData.message.trim()) e.message = "Message is required";
+        const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!formData.email.trim()) e.email = "Email is required";
+        else if (!emailRe.test(formData.email)) e.email = "Please enter a valid email";
+        setErrors(e);
+        return Object.keys(e).length === 0;
+      };
+
+      const handleSubmit = async (ev) => {
+        ev.preventDefault();
+        if (!validate()) return;
+        setIsSubmitting(true);
+        try {
+          const res = await fetch('/api/forms', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData),
+          });
+          if (!res.ok) throw new Error('Server error');
+          setIsSuccess(true);
+          setFormData({ firstName: "", lastName: "", email: "", organization: "", subject: "", message: "" });
+        } catch (err) {
+          alert('Failed to send message. Please try again later.');
+        } finally {
+          setIsSubmitting(false);
+        }
+      };
+
+      var contactPhone1 = cmsOrg.phone || '+234 901 642 8181';
+      var contactPhone2 = cmsOrg.phone2 || '+234 809 814 0576';
+      var contactEmail = cmsOrg.email || 'info@clukstars.com';
+      var contactAddress = cmsOrg.address || '33 Parakou Street, Wuse 2, Abuja FCT, Nigeria';
+      var contactOfficeHours = cmsOrg.officeHours || 'Mon – Fri: 08:00 – 18:00 WAT';
+      var addrLines = contactAddress.split(',').map(function(p) { return p.trim(); });
+      var contactItems = [
+        { icon: "Phone", label: "Phone", lines: [contactPhone1, contactPhone2].filter(Boolean) },
+        { icon: "Mail", label: "Email", lines: [contactEmail] },
+        { icon: "MapPin", label: "Address", lines: addrLines.length > 1 ? [addrLines.slice(0, -1).join(', '), addrLines[addrLines.length - 1]] : [contactAddress] },
+        { icon: "Clock", label: "Office Hours", lines: [contactOfficeHours, "Secure inquiries: 24/7"] },
+      ];
+
+      return (
+        <div className="min-h-screen bg-brand-bg font-sans">
+          <Navbar activePage="contact" />
+
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 lg:px-20 xl:px-28 pt-28">
+            <nav className="flex items-center gap-2 text-xs font-mono text-brand-muted/60">
+              <a href="index.html" className="hover:text-brand-red transition-colors">Home</a>
+              <span className="text-brand-muted/30">/</span>
+              <span className="text-brand-red font-medium">Contact</span>
+            </nav>
+          </div>
+
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 lg:px-20 xl:px-28 pt-36 pb-24 md:pb-32">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+
+              {/* Left info column */}
+              <div className="lg:col-span-5 space-y-10">
+                <div className="space-y-5">
+                  <div className="scroll-reveal flex items-center gap-3">
+                    <div className="w-8 h-[1px] bg-brand-red"></div>
+                    <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-red">Get in Touch</span>
+                  </div>
+                  <h1 className="scroll-reveal scroll-reveal-delay-100 font-serif text-5xl md:text-[52px] leading-[1.05] text-brand-dark font-medium tracking-tight">
+                    Start a <span className="italic text-brand-bright">conversation</span>
+                  </h1>
+                  <p className="scroll-reveal scroll-reveal-delay-200 text-sm md:text-base text-brand-muted leading-relaxed">
+                    Our leadership is committed to delivering value and fostering a culture of excellence. Reach out — let's discuss how CLUKSTARS can serve your vision.
+                  </p>
+                </div>
+
+                <div className="scroll-reveal scroll-reveal-delay-300 space-y-5">
+                  {contactItems.map(item => (
+                    <div key={item.label} className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-xl bg-brand-red/5 flex items-center justify-center text-brand-red shrink-0 mt-0.5">
+                        <Icon name={item.icon} className="w-5 h-5" />
+                      </div>
+                      <div className="space-y-0.5">
+                        <span className="text-[10px] font-mono font-semibold uppercase tracking-widest text-brand-muted">{item.label}</span>
+                        {item.lines.map((line, i) => (
+                          item.label === "Email"
+                            ? <a key={i} href={`mailto:${line}`} className="block text-sm font-bold text-brand-dark hover:text-brand-bright transition-colors">{line}</a>
+                            : <div key={i} className="text-sm font-bold text-brand-dark">{line}</div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right form column */}
+              <div className="lg:col-span-7">
+                <div className="scroll-reveal scroll-reveal-delay-200 bg-white border border-[#e3beb8]/25 rounded-2xl p-6 sm:p-8 md:p-10 shadow-sm">
+                  {!isSuccess ? (
+                    <form onSubmit={handleSubmit} className="space-y-6" id="contact-form">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div className="space-y-1.5">
+                          <label className="text-[11px] font-mono uppercase tracking-wider text-brand-dark font-semibold">First Name</label>
+                          <input id="contact-first-name" type="text"
+                            className={`w-full text-sm py-2.5 px-3.5 bg-brand-bg border ${errors.firstName ? 'border-red-400' : 'border-[#e3beb8]/30 hover:border-brand-red/40 focus:border-brand-red'} rounded-xl outline-none transition-all font-sans text-brand-dark shadow-sm`}
+                            placeholder="John" value={formData.firstName}
+                            onChange={e => setFormData({...formData, firstName: e.target.value})} />
+                          {errors.firstName && <p className="text-[11px] text-red-600 font-medium">{errors.firstName}</p>}
+                        </div>
+                        <div className="space-y-1.5">
+                          <label className="text-[11px] font-mono uppercase tracking-wider text-brand-dark font-semibold">Last Name</label>
+                          <input id="contact-last-name" type="text"
+                            className={`w-full text-sm py-2.5 px-3.5 bg-brand-bg border ${errors.lastName ? 'border-red-400' : 'border-[#e3beb8]/30 hover:border-brand-red/40 focus:border-brand-red'} rounded-xl outline-none transition-all font-sans text-brand-dark shadow-sm`}
+                            placeholder="Doe" value={formData.lastName}
+                            onChange={e => setFormData({...formData, lastName: e.target.value})} />
+                          {errors.lastName && <p className="text-[11px] text-red-600 font-medium">{errors.lastName}</p>}
+                        </div>
+                      </div>
+                      <div className="space-y-1.5">
+                        <label className="text-[11px] font-mono uppercase tracking-wider text-brand-dark font-semibold">Email Address</label>
+                        <input id="contact-email" type="email"
+                          className={`w-full text-sm py-2.5 px-3.5 bg-brand-bg border ${errors.email ? 'border-red-400' : 'border-[#e3beb8]/30 hover:border-brand-red/40 focus:border-brand-red'} rounded-xl outline-none transition-all font-sans text-brand-dark shadow-sm`}
+                          placeholder="john@organisation.gov.ng" value={formData.email}
+                          onChange={e => setFormData({...formData, email: e.target.value})} />
+                        {errors.email && <p className="text-[11px] text-red-600 font-medium">{errors.email}</p>}
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div className="space-y-1.5">
+                          <label className="text-[11px] font-mono uppercase tracking-wider text-brand-dark font-semibold">Organisation</label>
+                          <input id="contact-org" type="text"
+                            className="w-full text-sm py-2.5 px-3.5 bg-brand-bg border border-[#e3beb8]/30 hover:border-brand-red/40 focus:border-brand-red rounded-xl outline-none transition-all font-sans text-brand-dark shadow-sm"
+                            placeholder="Your organisation" value={formData.organization}
+                            onChange={e => setFormData({...formData, organization: e.target.value})} />
+                        </div>
+                        <div className="space-y-1.5">
+                          <label className="text-[11px] font-mono uppercase tracking-wider text-brand-dark font-semibold">Subject</label>
+                          <select id="contact-subject"
+                            className="w-full text-sm py-2.5 px-3.5 bg-brand-bg border border-[#e3beb8]/30 hover:border-brand-red/40 focus:border-brand-red rounded-xl outline-none transition-all font-sans text-brand-dark shadow-sm cursor-pointer"
+                            value={formData.subject} onChange={e => setFormData({...formData, subject: e.target.value})}>
+                            <option value="">Select a subject</option>
+                            <option>Public Sector Partnership</option>
+                            <option>Private Sector Solution</option>
+                            <option>Infrastructure Development</option>
+                            <option>Security & Compliance</option>
+                            <option>General Inquiry</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div className="space-y-1.5">
+                        <label className="text-[11px] font-mono uppercase tracking-wider text-brand-dark font-semibold">Message</label>
+                        <textarea id="contact-message" rows={5}
+                          className={`w-full text-sm py-2.5 px-3.5 bg-brand-bg border ${errors.message ? 'border-red-400' : 'border-[#e3beb8]/30 hover:border-brand-red/40 focus:border-brand-red'} rounded-xl outline-none transition-all font-sans text-brand-dark shadow-sm resize-none`}
+                          placeholder="Tell us about your project or partnership interest..."
+                          value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} />
+                        {errors.message && <p className="text-[11px] text-red-600 font-medium">{errors.message}</p>}
+                      </div>
+                      <button id="contact-submit" type="submit" disabled={isSubmitting}
+                        className="w-full bg-[#7a0100] hover:bg-[#a1140a] text-white py-3.5 px-6 rounded-xl font-bold text-xs flex items-center justify-center gap-2 shadow-sm hover:shadow-md transition-all cursor-pointer disabled:opacity-50">
+                        {isSubmitting
+                          ? <><div className="w-4 h-4 rounded-full border-2 border-white/30 border-t-white animate-spin"></div> Processing...</>
+                          : <>Send Message <Icon name="ArrowRight" className="w-3.5 h-3.5" /></>}
+                      </button>
+                    </form>
+                  ) : (
+                    <div className="text-center py-16 space-y-6">
+                      <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto relative">
+                        <div className="absolute inset-0 rounded-full bg-emerald-400/20 animate-ping"></div>
+                        <Icon name="Check" className="w-8 h-8 relative z-10" />
+                      </div>
+                      <div className="space-y-2">
+                        <h3 className="font-serif text-2xl font-bold text-brand-dark">Message Sent</h3>
+                        <p className="text-sm text-brand-muted max-w-sm mx-auto">Your message was successfully sent. Our team will initialize contact within 18 hours.</p>
+                      </div>
+                      <button onClick={() => setIsSuccess(false)}
+                        className="bg-brand-dark text-white px-8 py-3 rounded-full font-bold text-xs hover:bg-brand-red transition-all mx-auto cursor-pointer">
+                        Send Another
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <Footer />
+          <ScrollToTop />
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('app'));
+    root.render(<ContactPage />);
+  </script>
+</body>
+</html>
