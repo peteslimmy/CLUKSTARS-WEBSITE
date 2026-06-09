@@ -144,7 +144,126 @@ async function seedCMSData() {
     }
     console.log(`✓ Seeded ${aboutStats.length} about stats`);
     
-    // 7. Seed Global Blocks
+    // 7. Seed Service Categories & Services
+    const serviceCategories = [
+      {
+        name: 'Public Sector Transformation',
+        description: 'AI-driven e-governance platforms, digital identity systems, and revenue assurance solutions designed for federal ministries, state governments, and municipal authorities across West Africa.',
+        icon: 'Monitor',
+        sortOrder: 0,
+        services: [
+          {
+            title: 'E-Governance Platforms',
+            description: 'End-to-end digital government infrastructure including citizen portals, document management systems, inter-agency data exchange, and automated workflow engines.',
+            icon: 'Monitor',
+            sortOrder: 0,
+            features: ['AI Governance', 'Digital Identity', 'Revenue Assurance', 'Policy Automation'],
+          },
+          {
+            title: 'Smart City Solutions',
+            description: 'Integrated urban management platforms covering traffic analytics, public safety systems, smart utility metering, and municipal service automation.',
+            icon: 'Cpu',
+            sortOrder: 1,
+            features: ['Urban Analytics', 'Traffic Management', 'Public Safety', 'Smart Utilities'],
+          },
+        ],
+      },
+      {
+        name: 'Private Sector Innovation',
+        description: 'Enterprise digital transformation services, business intelligence platforms, and AI-driven automation solutions for corporate and commercial clients.',
+        icon: 'GraphUp',
+        sortOrder: 1,
+        services: [
+          {
+            title: 'Enterprise Digital Transformation',
+            description: 'Comprehensive modernization of enterprise IT systems including cloud migration, workflow automation, legacy system integration, and AI-powered business process optimization.',
+            icon: 'Briefcase',
+            sortOrder: 0,
+            features: ['Cloud Migration', 'Workflow Automation', 'Enterprise AI', 'Data Modernization'],
+          },
+          {
+            title: 'Business Intelligence & Analytics',
+            description: 'Advanced analytics platforms delivering real-time dashboards, predictive modeling, market intelligence, and fraud detection for data-driven decision making.',
+            icon: 'GraphUp',
+            sortOrder: 1,
+            features: ['Predictive Analytics', 'Real-time Dashboards', 'Market Intelligence', 'Fraud Detection'],
+          },
+        ],
+      },
+      {
+        name: 'Infrastructure & Security',
+        description: 'Tier-1 sovereign cloud infrastructure, zero-trust security meshes, and resilient network architecture designed for mission-critical government and enterprise operations.',
+        icon: 'Shield',
+        sortOrder: 2,
+        services: [
+          {
+            title: 'Sovereign Cloud Infrastructure',
+            description: 'Nationally-hosted cloud platforms with tier-1 data centers, edge computing nodes, disaster recovery, and full data sovereignty compliance.',
+            icon: 'Cpu',
+            sortOrder: 0,
+            features: ['Tier-1 Data Centers', 'Network Architecture', 'Disaster Recovery', 'Edge Computing'],
+          },
+          {
+            title: 'Zero-Trust Security Mesh',
+            description: 'Comprehensive cybersecurity framework implementing zero-trust architecture, continuous threat monitoring, advanced encryption, and regulatory compliance enforcement.',
+            icon: 'Shield',
+            sortOrder: 1,
+            features: ['Identity Management', 'Threat Detection', 'Advanced Encryption', 'Compliance Monitoring'],
+          },
+        ],
+      },
+      {
+        name: 'Compliance & Risk Automation',
+        description: 'Automated compliance management platforms, risk assessment frameworks, and audit-ready systems ensuring continuous alignment with regulatory requirements.',
+        icon: 'FileCheck',
+        sortOrder: 3,
+        services: [
+          {
+            title: 'Regulatory Compliance Automation',
+            description: 'End-to-end compliance automation covering ISO 27001, GDPR, NDPR, HIPAA, and SOC 3 — with continuous monitoring and auto-generated audit trails.',
+            icon: 'FileCheck',
+            sortOrder: 0,
+            features: ['ISO 27001', 'GDPR', 'NDPR', 'SOC 3'],
+          },
+          {
+            title: 'Risk Management Framework',
+            description: 'Enterprise risk management platforms enabling real-time risk assessment, automated audit workflows, policy governance, and incident response orchestration.',
+            icon: 'Network',
+            sortOrder: 1,
+            features: ['Risk Assessment', 'Audit Automation', 'Policy Management', 'Incident Response'],
+          },
+        ],
+      },
+    ];
+
+    for (const cat of serviceCategories) {
+      const { services, ...catData } = cat;
+      const createdCat = await prisma.serviceCategory.upsert({
+        where: { name: catData.name },
+        update: catData,
+        create: Object.assign({}, catData, { id: 'svc-cat-' + catData.name.toLowerCase().replace(/\s+/g, '-') }),
+      });
+      for (const svc of services) {
+        const { features, ...svcData } = svc;
+        const svcId = 'svc-' + svc.title.toLowerCase().replace(/\s+/g, '-');
+        const createdSvc = await prisma.service.upsert({
+          where: { id: svcId },
+          update: Object.assign({}, svcData, { categoryId: createdCat.id }),
+          create: Object.assign({}, svcData, { id: svcId, categoryId: createdCat.id }),
+        });
+        for (let i = 0; i < features.length; i++) {
+          const featId = 'feat-' + svc.title.toLowerCase().replace(/\s+/g, '-') + '-' + i;
+          await prisma.serviceFeature.upsert({
+            where: { id: featId },
+            update: { label: features[i], sortOrder: i },
+            create: { id: featId, label: features[i], sortOrder: i, serviceId: createdSvc.id },
+          });
+        }
+      }
+    }
+    console.log('✓ Seeded 4 service categories with 8 services');
+    
+    // 8. Seed Global Blocks
     const globalBlocks = [
       {
         name: 'technological-edge',
