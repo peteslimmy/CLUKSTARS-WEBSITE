@@ -1,0 +1,107 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install Backend Dependencies
+        working-directory: ./backend
+        run: npm ci
+      
+      - name: Build Backend
+        working-directory: ./backend
+        run: |
+          npm run build
+          npx prisma generate
+      
+      - name: Install Admin Dependencies
+        working-directory: ./admin
+        run: npm ci
+      
+      - name: Build Admin
+        working-directory: ./admin
+        run: npm run build
+      
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts
+          path: |
+            backend/dist/
+            admin/dist/
+            backend/prisma/
+          retention-days: 7
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Deploy to VPS via SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT }}
+          script: |
+            cd /var/www/clukstars
+            
+            # Pull latest changes
+            git pull
+            
+            # Install and build backend
+            cd backend
+            npm ci
+            npm run build
+            npx prisma migrate deploy
+            cd ..
+            
+            # Install and build admin
+            cd admin
+            npm ci
+            npm run build
+            cd ..
+            
+            # Restart PM2
+            pm2 restart clukstars-api
+            
+            # Clean up old builds
+            npm cache clean --force || true
+            
+            echo "✅ Deployment complete!"
+
+  health-check:
+    needs: deploy
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check API Health
+        run: |
+          curl -f https://www.clukstars.com/api/health || exit 1
+      
+      - name: Check Website
+        run: |
+          curl -f https://www.clukstars.com/ || exit 1
+      
+      - name: Check Admin
+        run: |
+          curl -f https://www.clukstars.com/admin/ || exit 1
