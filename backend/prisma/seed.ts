@@ -128,7 +128,7 @@ async function main() {
       tagline: 'Empowering Your Digital Future',
       email: 'info@clukstars.com',
       phone: '+234 XXX XXX XXXX',
-      address: '33 Parakou Street, Abuja, Nigeria',
+      address: '13 Ahmed Joda Crescent, Kado Estate, Abuja, FCT, Nigeria',
     },
   });
   console.log('Created organization');
