@@ -1,6 +1,6 @@
 [build]
-  command = "cd admin && npm ci && npm run build && cd .. && node scripts/inject-cms.js"
-  publish = "."
+  command = "node scripts/build-netlify.js"
+  publish = "dist_public"
 
 [[redirects]]
   from = "/api/*"
@@ -16,12 +16,12 @@
 
 [[redirects]]
   from = "/admin"
-  to = "/admin/dist/index.html"
+  to = "/admin/index.html"
   status = 200
 
 [[redirects]]
   from = "/admin/*"
-  to = "/admin/dist/:splat"
+  to = "/admin/:splat"
   status = 200
 
 [[headers]]
