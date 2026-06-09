@@ -5,6 +5,7 @@ backend/.env
 backend/.env.production
 backend/prisma/*.db
 backend/prisma/*.db-journal
+dist_public/
 backend/uploads/*
 !backend/uploads/.gitkeep
 backend/uploads/thumbnails/*
