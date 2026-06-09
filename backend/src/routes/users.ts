@@ -10,10 +10,10 @@ import { authenticate, authorize } from '../middleware/auth';
 
 const router = Router();
 
-router.get('/', authenticate as any, authorize('users', 'list') as any, listUsers as any);
-router.get('/:id', authenticate as any, authorize('users', 'read') as any, getUser as any);
-router.post('/', authenticate as any, authorize('users', 'create') as any, createUser as any);
-router.put('/:id', authenticate as any, authorize('users', 'update') as any, updateUser as any);
-router.delete('/:id', authenticate as any, authorize('users', 'delete') as any, deleteUser as any);
+router.get('/', authenticate, authorize('users', 'list'), listUsers);
+router.get('/:id', authenticate, authorize('users', 'read'), getUser);
+router.post('/', authenticate, authorize('users', 'create'), createUser);
+router.put('/:id', authenticate, authorize('users', 'update'), updateUser);
+router.delete('/:id', authenticate, authorize('users', 'delete'), deleteUser);
 
 export default router;

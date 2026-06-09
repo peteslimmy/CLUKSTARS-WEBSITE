@@ -15,17 +15,17 @@ interface Page {
 }
 
 export default function Pages() {
-  const { user, hasPermission } = useAuth();
+  const { user } = useAuth();
   const [pages, setPages] = useState<Page[]>([]);
   const [loading, setLoading] = useState(true);
-  const [canCreate, setCanCreate] = useState(false);
-  const [canEdit, setCanEdit] = useState(false);
-  const [canDelete, setCanDelete] = useState(false);
+
+  function hasPermission(resource: string, action: string): boolean {
+    if (!user) return false;
+    if (user.permissions.includes('*:*')) return true;
+    return user.permissions.includes(`${resource}:${action}`);
+  }
 
   useEffect(() => {
-    setCanCreate(hasPermission('pages', 'create'));
-    setCanEdit(hasPermission('pages', 'update'));
-    setCanDelete(hasPermission('pages', 'delete'));
     fetchPages();
   }, [user]);
 
@@ -71,7 +71,7 @@ export default function Pages() {
     <div className="p-6">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-gray-900">Pages</h1>
-        {canCreate && (
+        {hasPermission('pages', 'create') && (
           <Link to="/pages/new" className="btn-primary">
             New Page
           </Link>
@@ -111,7 +111,7 @@ export default function Pages() {
                   {page.publishedAt ? new Date(page.publishedAt).toLocaleDateString() : '-'}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  {canEdit && (
+                  {hasPermission('pages', 'update') && (
                     <>
                       <Link to={`/pages/${page.id}/builder`} className="text-indigo-600 hover:text-indigo-900 mr-3">
                         Edit
@@ -121,7 +121,7 @@ export default function Pages() {
                       </Link>
                     </>
                   )}
-                  {canDelete && (
+                  {hasPermission('pages', 'delete') && (
                     <button onClick={() => handleDelete(page.id)} className="text-red-600 hover:text-red-900">
                       Delete
                     </button>

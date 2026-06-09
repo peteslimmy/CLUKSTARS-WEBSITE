@@ -9,9 +9,9 @@ import { authenticate, authorize } from '../middleware/auth';
 
 const router = Router();
 
-router.get('/', listSocialLinks as any);
-router.post('/', authenticate as any, authorize('social', 'create') as any, createSocialLink as any);
-router.put('/:id', authenticate as any, authorize('social', 'update') as any, updateSocialLink as any);
-router.delete('/:id', authenticate as any, authorize('social', 'delete') as any, deleteSocialLink as any);
+router.get('/', listSocialLinks);
+router.post('/', authenticate, authorize('social', 'create'), createSocialLink);
+router.put('/:id', authenticate, authorize('social', 'update'), updateSocialLink);
+router.delete('/:id', authenticate, authorize('social', 'delete'), deleteSocialLink);
 
 export default router;

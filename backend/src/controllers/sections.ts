@@ -113,7 +113,7 @@ export async function deleteSection(req: AuthRequest, res: Response): Promise<vo
 
 export async function reorderSections(req: AuthRequest, res: Response): Promise<void> {
   try {
-    const { pageId, sectionIds } = req.body;
+    const { sectionIds } = req.body;
     const updates = sectionIds.map((id: string, index: number) =>
       prisma.pageSection.update({
         where: { id },

@@ -3,7 +3,7 @@ import prisma from '../lib/prisma';
 import { AuthRequest } from '../middleware/auth';
 import { serviceCategorySchema, serviceSchema } from '../validators';
 
-export async function listCategories(req: AuthRequest, res: Response): Promise<void> {
+export async function listCategories(_req: AuthRequest, res: Response): Promise<void> {
   try {
     const items = await prisma.serviceCategory.findMany({
       orderBy: { sortOrder: 'asc' },

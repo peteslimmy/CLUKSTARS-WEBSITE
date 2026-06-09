@@ -3,10 +3,12 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import rateLimit from 'express-rate-limit';
+import cookieParser from 'cookie-parser';
 import path from 'path';
 import { config } from './config/env';
 import { errorHandler, notFound } from './middleware/error';
 import { cmsInject } from './middleware/cmsInject';
+import { csrfProtection, csrfTokenMiddleware } from './middleware/csrf';
 import authRoutes from './routes/auth';
 import organizationRoutes from './routes/organization';
 import brandRoutes from './routes/brand';
@@ -47,16 +49,29 @@ app.use(helmet({
 }));
 app.use(cors({ origin: config.corsOrigin, credentials: true }));
 app.use(morgan('dev'));
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(express.json({ limit: '1mb' }));
+app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 
-const limiter = rateLimit({
+const loginLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 5,
+  message: { error: 'Too many login attempts. Try again in 1 minute.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
   standardHeaders: true,
   legacyHeaders: false,
 });
-app.use('/api/', limiter);
+
+app.use(csrfTokenMiddleware);
+app.use('/api/auth/login', loginLimiter);
+app.use('/api/', apiLimiter);
+app.use(csrfProtection);
 
 app.use('/api/public', publicRoutes);
 app.use('/api/auth', authRoutes);

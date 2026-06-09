@@ -1,5 +1,4 @@
 import multer from 'multer';
-import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
 
 const ALLOWED_MIMES = [
@@ -29,7 +28,7 @@ export const upload = multer({
   limits: { fileSize: MAX_SIZE },
 });
 
-export function generateFileName(originalName: string, suffix: string, ext: string, id?: string): string {
+export function generateFileName(_originalName: string, suffix: string, ext: string, id?: string): string {
   const baseId = id || uuidv4().slice(0, 8);
   return `${baseId}-${suffix}.${ext}`;
 }

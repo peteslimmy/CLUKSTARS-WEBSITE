@@ -12,11 +12,11 @@ import { upload } from '../middleware/upload';
 
 const router = Router();
 
-router.get('/', listMedia as any);
-router.post('/', authenticate as any, authorize('media', 'create') as any, upload.single('file'), uploadMedia as any);
-router.post('/upload-brand', authenticate as any, upload.single('file'), uploadBrandImage as any);
-router.get('/:id', getMedia as any);
-router.put('/:id', authenticate as any, authorize('media', 'update') as any, updateMedia as any);
-router.delete('/:id', authenticate as any, authorize('media', 'delete') as any, deleteMedia as any);
+router.get('/', listMedia);
+router.post('/', authenticate, authorize('media', 'create'), upload.single('file'), uploadMedia);
+router.post('/upload-brand', authenticate, upload.single('file'), uploadBrandImage);
+router.get('/:id', getMedia);
+router.put('/:id', authenticate, authorize('media', 'update'), updateMedia);
+router.delete('/:id', authenticate, authorize('media', 'delete'), deleteMedia);
 
 export default router;

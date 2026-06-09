@@ -86,7 +86,7 @@ export async function deleteBlock(req: AuthRequest, res: Response): Promise<void
 
 export async function reorderBlocks(req: AuthRequest, res: Response): Promise<void> {
   try {
-    const { sectionId, blockIds } = req.body;
+    const { blockIds } = req.body;
     const updates = blockIds.map((id: string, index: number) =>
       prisma.pageBlock.update({
         where: { id },

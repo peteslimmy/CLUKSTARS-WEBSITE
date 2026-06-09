@@ -12,6 +12,8 @@ interface Study {
   content: string | null;
   coverImageUrl: string | null;
   result: string | null;
+  sector: string | null;
+  metrics: string | null;
   tags: string | null;
   status: string;
   publishedAt: string | null;
@@ -158,7 +160,7 @@ export default function CaseStudies() {
               <input type="text" value={form.result} onChange={(e) => setForm({ ...form, result: e.target.value })} className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 outline-none" placeholder="Deployed 80+ nodes..." />
             </div>
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-1">Metrics (JSON array of { val, label })</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Metrics (JSON array of val, label)</label>
               <textarea value={form.metrics} onChange={(e) => setForm({ ...form, metrics: e.target.value })} rows={2} className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 outline-none font-mono text-sm" placeholder='[{"val":"80+","label":"Nodes Deployed"},...]' />
             </div>
             <div className="md:col-span-2">

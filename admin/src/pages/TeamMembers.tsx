@@ -11,6 +11,7 @@ interface Member {
   bio: string | null;
   photoUrl: string | null;
   email: string | null;
+  tags: string | null;
   sortOrder: number;
   isActive: boolean;
   createdAt: string;

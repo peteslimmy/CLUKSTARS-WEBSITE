@@ -3,7 +3,7 @@ import prisma from '../lib/prisma';
 import { AuthRequest } from '../middleware/auth';
 import { homepageStatSchema } from '../validators';
 
-export async function listHomepageStats(req: AuthRequest, res: Response): Promise<void> {
+export async function listHomepageStats(_req: AuthRequest, res: Response): Promise<void> {
   try {
     const items = await prisma.homepageStat.findMany({ orderBy: { sortOrder: 'asc' } });
     res.json(items);

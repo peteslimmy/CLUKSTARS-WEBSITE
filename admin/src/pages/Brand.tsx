@@ -1,4 +1,4 @@
-import { useState, useEffect, FormEvent, useRef } from 'react';
+import { useState, useEffect, type FormEvent, useRef } from 'react';
 import { Upload, X, Loader2 } from 'lucide-react';
 import api from '../lib/api';
 import toast from 'react-hot-toast';
@@ -26,7 +26,7 @@ const colorPresets = [
 ];
 
 export default function Brand() {
-  const [data, setData] = useState<BrandData | null>(null);
+  const [_data, setData] = useState<BrandData | null>(null);
   const [form, setForm] = useState({
     primaryColor: '#0F172A',
     secondaryColor: '#00897B',

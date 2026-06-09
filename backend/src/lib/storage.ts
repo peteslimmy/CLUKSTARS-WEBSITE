@@ -2,7 +2,6 @@ import fs from 'fs/promises';
 import path from 'path';
 
 const UPLOADS_DIR = path.resolve(__dirname, '../../uploads');
-const THUMBS_DIR = path.join(UPLOADS_DIR, 'thumbnails');
 
 export const storage = {
   async save(filename: string, buffer: Buffer, subdir?: string): Promise<string> {

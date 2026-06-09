@@ -1,4 +1,4 @@
-import { useState, useEffect, FormEvent } from 'react';
+import { useState, useEffect, type FormEvent } from 'react';
 import api from '../lib/api';
 import toast from 'react-hot-toast';
 
@@ -15,7 +15,7 @@ interface OrgData {
 }
 
 export default function Organization() {
-  const [data, setData] = useState<OrgData | null>(null);
+  const [_data, setData] = useState<OrgData | null>(null);
   const [form, setForm] = useState({
     name: '',
     tagline: '',

@@ -3,7 +3,7 @@ import prisma from '../lib/prisma';
 import { AuthRequest } from '../middleware/auth';
 import { globalBlockSchema } from '../validators';
 
-export async function listGlobalBlocks(req: AuthRequest, res: Response): Promise<void> {
+export async function listGlobalBlocks(_req: AuthRequest, res: Response): Promise<void> {
   try {
     const items = await prisma.globalBlock.findMany({ orderBy: { name: 'asc' } });
     res.json(items);

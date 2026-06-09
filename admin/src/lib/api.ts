@@ -1,15 +1,22 @@
 import axios from 'axios';
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
+function getCsrfToken(): string | undefined {
+  const match = document.cookie.match(/(?:^|;\s*)_csrf=([^;]*)/);
+  return match?.[1];
+}
 
 const api = axios.create({
-  baseURL: API_BASE,
+  baseURL: '/api',
 });
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('accessToken');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
+  }
+  const csrf = getCsrfToken();
+  if (csrf && config.method && !['get', 'head', 'options'].includes(config.method)) {
+    config.headers['X-CSRF-Token'] = csrf;
   }
   return config;
 });
@@ -23,7 +30,7 @@ api.interceptors.response.use(
       const refreshToken = localStorage.getItem('refreshToken');
       if (refreshToken) {
         try {
-          const { data } = await axios.post(`${API_BASE}/auth/refresh`, { refreshToken });
+          const { data } = await axios.post('/api/auth/refresh', { refreshToken });
           localStorage.setItem('accessToken', data.accessToken);
           localStorage.setItem('refreshToken', data.refreshToken);
           originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import type { LucideIcon } from 'lucide-react';
 import {
   LayoutDashboard,
   Users,
@@ -27,7 +28,14 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
-const navItems = [
+interface NavItem {
+  href: string;
+  label: string;
+  icon: LucideIcon;
+  disabled?: boolean;
+}
+
+const navItems: NavItem[] = [
   { href: '/', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/organization', label: 'Organization', icon: Building2 },
   { href: '/brand', label: 'Brand Settings', icon: Settings },

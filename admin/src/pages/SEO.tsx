@@ -1,4 +1,4 @@
-import { useState, useEffect, FormEvent } from 'react';
+import { useState, useEffect, type FormEvent } from 'react';
 import api from '../lib/api';
 import toast from 'react-hot-toast';
 
